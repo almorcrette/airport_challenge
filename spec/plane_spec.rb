@@ -13,7 +13,7 @@ describe Plane do
   it "lands at the designated airport when instructed if airport is not full and weather is not stormy" do
     allow(weather).to receive(:stormy?).and_return(false)
     allow(airport).to receive(:full?).and_return(false)
-    allow(airport).to receive(:hangar).and_return([])
+    allow(airport).to receive(:store).and_return(an_instance_of(Array))
     @plane.land(airport, weather)
     # expect(airport.hangar).to include(@plane)
     expect(@plane.land(airport, weather)).to eq @plane
@@ -34,7 +34,7 @@ describe Plane do
   it "takes off when instructed if at an airport when weather is not stormy" do
     allow(weather).to receive(:stormy?).and_return(false)
     allow(airport).to receive(:full?).and_return(false)
-    allow(airport).to receive(:hangar).and_return([])
+    allow(airport).to receive(:store).and_return(an_instance_of(Array))
     @plane.land(airport, weather)
 
     allow(weather).to receive(:stormy?).and_return(false)

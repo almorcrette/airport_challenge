@@ -15,5 +15,13 @@ class Airport
   def change_capacity(custom_capacity)
     @capacity = custom_capacity
   end
-    
+
+  def store(plane)
+    @hangar.push(plane)
+  end
+
+  def runway(plane)
+    @hangar.delete(plane)
+  end
+  
 end

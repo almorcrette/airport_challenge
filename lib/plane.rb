@@ -11,7 +11,7 @@ class Plane
   def land(airport, weather)
     raise "Airport full" if airport.full?
     raise "Stormy weather" if weather.stormy? == true
-    airport.hangar.push(self)
+    airport.store(self)
     @location = airport
     self
   end
@@ -19,7 +19,7 @@ class Plane
   def take_off(weather)
     raise "Already in the air" if @location == :in_air
     raise "Stormy weather" if weather.stormy? == true
-    @location.hangar.delete(self)
+    airport.runway(self)
     @location = :in_air
     self
   end
