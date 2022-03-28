@@ -2,9 +2,7 @@ require './lib/airport'
 
 describe Airport do
 
-  before(:each) do
-    @weather = Weather.new
-  end
+  let(:weather) { double(:weather) }
 
   it "is created with a default capacity" do
     airport = Airport.new
@@ -25,8 +23,8 @@ describe Airport do
   it "can be full" do
     airport = Airport.new
     airport.capacity.times do
-      allow(@weather).to receive(:stormy?).and_return(false)
-      Plane.new.land(airport, @weather)
+      allow(weather).to receive(:stormy?).and_return(false)
+      Plane.new.land(airport, weather)
     end
     expect(airport.full?).to be true
   end
