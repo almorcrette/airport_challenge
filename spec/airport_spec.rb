@@ -1,12 +1,11 @@
 require './lib/airport'
 
-describe Airport do
+context Airport do
 
   let(:weather) { double(:weather) }
 
   it "is created with a default capacity" do
-    airport = Airport.new
-    expect(airport.capacity).to be_an(Integer)
+    expect(subject.capacity).to be_an(Integer)
   end
 
   it "can be created with a custom capacity" do
@@ -15,9 +14,15 @@ describe Airport do
     expect(airport.capacity).to eq custom_capacity
   end
 
-  it "reports what is in the hangar when asked" do
+  it "capacity can be overriden" do
     airport = Airport.new
-    expect(airport.hangar).to eq airport.hangar
+    custom_capacity = rand(1..20)
+    airport.change_capacity(custom_capacity)
+    expect(airport.capacity).to eq custom_capacity
+  end
+
+  it "reports what is in the hangar when asked" do
+    expect(subject.hangar).to eq subject.hangar
   end
 
   it "can be full" do
@@ -36,11 +41,6 @@ describe Airport do
     end
   end
 
-  it "capacity can be overriden" do
-    airport = Airport.new
-    custom_capacity = rand(1..20)
-    airport.change_capacity(custom_capacity)
-    expect(airport.capacity).to eq custom_capacity
-  end
+
 
 end

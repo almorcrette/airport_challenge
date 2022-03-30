@@ -16,7 +16,7 @@ class Plane
     self
   end
 
-  def take_off(weather)
+  def take_off(airport, weather)
     raise "Already in the air" if @location == :in_air
     raise "Stormy weather" if weather.stormy? == true
     airport.runway(self)
